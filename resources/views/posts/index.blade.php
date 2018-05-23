@@ -13,7 +13,7 @@
                     <div class="col-lg-6">
                         <h2>{{$post->title}}</h2>
                         <h3>{{$post->author}}</h3>
-                        <p>{{$post->description}}</p>
+                        <p>{!!$post->description !!}</p>
                     </div>
                     <div style="padding-top: 1%" class="col-lg-6">
                         <a class="btn btn-success" href="#">Agree</a>

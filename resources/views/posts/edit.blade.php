@@ -12,7 +12,7 @@
                 {{Form::text('title', $post->title,['class' => 'form-control'])}}
 
                 {{Form::label('description',"Post Description")}}
-                {{Form::textarea('post_description', $post->description,['id' => 'article-ckeditor','class' => 'form-control', 'rows' => '3'])}}
+                {{Form::textarea('description', $post->description,['id' => 'article-ckeditor','class' => 'form-control', 'rows' => '3'])}}
             </div>
             {!! Form::submit("Submit", ['class' => 'btn btn-primary']) !!}
             {{Form::hidden('_method', 'PUT')}}

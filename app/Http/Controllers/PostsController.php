@@ -60,7 +60,6 @@ class PostsController extends Controller
     public
     function show($id)
     {
-        //
         $post = Post::find($id);
         return view("posts.show")->with('post', $post);
     }
@@ -88,16 +87,14 @@ class PostsController extends Controller
     public
     function update(Request $request, $id)
     {
-
-        $this->validate($request, [
+        $validatedData = $request->validate([
+            'title' => 'required',
             'description' => 'required',
-            'title' => 'required'
         ]);
         $post = Post::find($id);
-        $post->description = $request->input("description");
-        $post->title = $request->input("title");
+        $post->description = $validatedData["description"];
+        $post->title = $validatedData["title"];
         $post->save();
-        return $post;
         return redirect("/posts");
 
     }
@@ -112,6 +109,7 @@ class PostsController extends Controller
     function destroy($id)
     {
         $post = Post::find($id);
+        $post->delete();
         return redirect('/posts');
     }
 }

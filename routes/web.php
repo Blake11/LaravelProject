@@ -11,5 +11,9 @@
 |
 */
 
-Route::get('/', "PagesController@index");
+
+Auth::routes();
+
+Route::get("/","PostsController@index")->middleware("auth");
+
 Route::resource("posts", "PostsController");
