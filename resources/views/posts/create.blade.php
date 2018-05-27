@@ -26,15 +26,22 @@
                     <div class="col-lg-8">
                         <div class="form-group">
                             {{Form::label('description',"Post Description")}}
-                            {{Form::textarea('description', '',['id' => 'article-ckeditor','class' => 'form-control', 'rows' => '3'])}}
+                            {{Form::textarea('description', '',
+                            ['id' => 'article-ckeditor','class' => 'form-control', 'rows' => '3'])}}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                {!! Form::submit("Submit", ['class' => 'btn btn-primary', 'data-dismiss' => 'modal']) !!}
+                <div class="mr-auto">
+                    Created by: {!! Auth::user()->first_name," ", Auth::user()->last_name ,
+                " on ", \Carbon\Carbon::now()->toDateString()
+                !!}
+                </div>
+                {{ Form::submit("Submit", ['class' => 'btn btn-primary', 'data-dismiss' => 'modal']) }}
                 <input type="button" name="reset" value="Close" class="btn btn-primary">
             </div>
             {!! Form::close() !!}
         </div>
     </div>
+</div>

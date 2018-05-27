@@ -30,6 +30,9 @@
                             <button class="btn btn-secondary">Register</button>
                         </a></li>
                 @else
+                    <li class="nav-item">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#postsmodal">New Post</button>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button"
                            aria-expanded="false" aria-haspopup="true" v-pre>

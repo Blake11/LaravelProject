@@ -14,6 +14,6 @@
 
 Auth::routes();
 
-Route::get("/","PostsController@index")->middleware("auth");
+Route::get("/","PagesController@index")->middleware("auth");
 
-Route::resource("posts", "PostsController");
+Route::resource("/posts", "PostsController")->middleware("auth");

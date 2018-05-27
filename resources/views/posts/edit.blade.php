@@ -18,5 +18,8 @@
             {{Form::hidden('_method', 'PUT')}}
             {!! Form::close() !!}
         </div>
+        <div class="row">
+            <small>Last edited on {{$post->updated_at}}</small>
+        </div>
     </div>
 @endsection

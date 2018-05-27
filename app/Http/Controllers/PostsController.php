@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -16,10 +16,8 @@ class PostsController extends Controller
     public function index()
     {
         //
-        $posts = Post::orderBy("created_at", "desc")->paginate(20);
-        $comments = Comment::all();
-
-        return view("posts.index")->with('posts', $posts)->with('comments', $comments);
+        $posts =  Post::orderBy("created_at")->paginate(20);
+        return view("posts.index")->with('posts', $posts);
     }
 
     /**
@@ -43,10 +41,13 @@ class PostsController extends Controller
     function store(Request $request)
     {
         $this->validate($request, [
-            'post_description' => 'required'
+            'title' => 'required|max:255',
+            'description' => 'required|max:2000'
         ]);
         $post = new Post;
-        $post->description = $request->input("post_description");
+        $post->title = $request->input("title");
+        $post->description = $request->input("description");
+        $post->author_id = Auth::user()->id;
         $post->save();
         return redirect("/posts");
     }
@@ -61,6 +62,9 @@ class PostsController extends Controller
     function show($id)
     {
         $post = Post::find($id);
+        if(!$post){
+            return abort("404");
+        }
         return view("posts.show")->with('post', $post);
     }
 
@@ -74,6 +78,9 @@ class PostsController extends Controller
     function edit($id)
     {
         $post = Post::find($id);
+        if(!$post){
+            return abort("404");
+        }
         return view("posts.edit")->with('post', $post);
     }
 
@@ -109,6 +116,9 @@ class PostsController extends Controller
     function destroy($id)
     {
         $post = Post::find($id);
+        if(!$post){
+            return abort("404");
+        }
         $post->delete();
         return redirect('/posts');
     }

@@ -2,6 +2,4 @@
 
 @section('content')
 
-
 @endsection
-@include('posts.create')

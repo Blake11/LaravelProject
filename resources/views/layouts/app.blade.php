@@ -17,6 +17,9 @@
 <div id="app">
     @include('inc.navbar')
     @yield('content')
+    @auth
+        @include('posts.create')
+    @endauth
 </div>
 <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
