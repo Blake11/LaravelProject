@@ -14,6 +14,14 @@
 
 Auth::routes();
 
-Route::get("/","PagesController@index")->middleware("auth");
+Route::get("/", "PagesController@index")->middleware("auth");
+
+Route::get("/dashboard", "HomeController@index")->middleware("auth");
 
 Route::resource("/posts", "PostsController")->middleware("auth");
+
+Route::resource("/comments", "CommentsController")->middleware("auth");
+
+Route::resource("/user", "ProfilesController")->middleware("auth");
+
+

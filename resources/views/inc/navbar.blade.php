@@ -30,19 +30,17 @@
                             <button class="btn btn-secondary">Register</button>
                         </a></li>
                 @else
-                    <li class="nav-item">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#postsmodal">New Post</button>
-                    </li>
+                    <li class="nav-item btn btn-info">{{Auth::user()->first_name}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button"
                            aria-expanded="false" aria-haspopup="true" v-pre>
-                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
+                            Menu <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu">
+                            <li class="dropdown-item" data-toggle="modal" data-target="#postsmodal"><a href="" onclick="event.preventDefault();">New Post</a></li>
                             <li class="dropdown-item">
-                                <a href="/user/{{Auth::user()->id}}">
-                                    Profile
+                                <a href="/dashboard">
+                                    Edit Profile
                                 </a>
                             </li>
                             <li class="dropdown-item">
