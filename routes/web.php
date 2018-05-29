@@ -14,6 +14,8 @@
 
 Auth::routes();
 
+Route::get("/search", "PagesController@search")->name("search")->middleware("auth");
+
 Route::get("/", "PagesController@index")->middleware("auth");
 
 Route::get("/dashboard", "HomeController@index")->middleware("auth");

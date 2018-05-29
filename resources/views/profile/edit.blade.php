@@ -24,13 +24,17 @@
             <h1 class="text-center">Save changes</h1>
             <div class="text-center">
                 {{Form::submit("Save", ['class' => 'btn btn-success'])}}
-                <a class="btn btn-danger" href ="/user/{{$user->id}}/edit">Reset</a>
+                <a class="btn btn-danger" href="/user/{{$user->id}}/edit">Reset</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                    Delete Account
+                </button>
             </div>
         </div>
     </div>
 
     {{Form::hidden('_method', 'PUT')}}
     {!! Form::close() !!}
+
     <!--End about-->
     @if(count($posts) > 0)
 
@@ -62,5 +66,28 @@
         @endif
         <!--Post-->
             <!--End Post-->
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure u want to delete your account?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::open(['action' => ['ProfilesController@destroy',$user->id] , "method" => "POST", 'files' => 'true']) !!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        <input  type="submit" class="btn btn-danger" data-toggle="modal" value="Yes">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
         </div>
 @endsection

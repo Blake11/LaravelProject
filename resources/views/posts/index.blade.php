@@ -8,7 +8,12 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <img class="img-fluid img-rounded" src="{{Storage::url($post->image_link)}}" alt="image">
-                        <hr class="mt-2"><small>Written by {{$post->user->first_name}} {{$post->user->last_name}}
+                        <hr class="mt-2"><small>Written by
+                            @if($post->user->id != Auth::user()->id)
+                                {{$post->user->first_name}} {{$post->user->last_name}}
+                            @else
+                                you
+                            @endif
                             on {{$post->created_at}}
                         </small>
                     </div>
